@@ -1,3 +1,10 @@
+/**
+ * Ce code simule la modélisation d'un réseau social avec GraphX.
+ * Il crée des utilisateurs (nœuds) et des liens d'amitié (arêtes).
+ * La situation est modélisée par un graphe, et un algorithme d'analyse
+ * (Connected Components) est appliqué pour détecter les groupes d'amis.
+ */
+
 import org.apache.spark._
 import org.apache.spark.graphx._
 import org.apache.spark.rdd.RDD
@@ -5,7 +12,7 @@ import org.apache.log4j.{Level, Logger, PropertyConfigurator}
 
 object SparkGraphXExample {
   def main(args: Array[String]): Unit = {
-    // Configurer le logging pour rediriger les logs vers un fichier
+    // Configure le logging pour rediriger les logs vers un fichier
     PropertyConfigurator.configure("src/main/resources/log4j.properties")
 
     Logger.getLogger("org").setLevel(Level.OFF)
@@ -19,12 +26,12 @@ object SparkGraphXExample {
 
     // Créer les nœuds (amis)
     val amis: RDD[(VertexId, String)] = sc.parallelize(Array(
-      (1L, "Mohamed"), // Mohamed
-      (2L, "Alice"),   // Alice
-      (3L, "Asma"),    // Asma
-      (4L, "Tom"),     // Tom
-      (5L, "Ayman"),   // Ayman
-      (6L, "Sarah")    // Sarah
+      (1L, "Mohamed"), 
+      (2L, "Alice"),   
+      (3L, "Asma"),    
+      (4L, "Tom"),     
+      (5L, "Ayman"),   
+      (6L, "Sarah")   
     ))
 
     // Créer les arêtes (relations d'amitié)
